@@ -36,36 +36,44 @@
     </nav>
     <div class="container">
        <div action="">
+       	<!-- chung ta gui qua co che PUT , qua AJAX  !-->       	
   			<label for="maso">Ma so:</label><br>
   			<input type="text" id="maso" name="maso" value="John"><br>
   			<label for="last">Last:</label><br>
 			<input type="text" id="last" name="last" value="Doe"><br><br>
-			<label for="first">First:</label><br>
-			<input type="text" id="first" name="first" value="Doe"><br><br>
-			<label for="born">Born:</label><br>
+			<label for="frist">frist:</label><br>
+			<input type="text" id="frist" name="frist" value="Doe"><br><br>
+			<label for="born">born:</label><br>
 			<input type="text" id="born" name="born" value="Doe"><br><br>
+
 			<input id="update_submit" type="submit" value="Submit">
 		</div> 
 
 		<script>
 			$(document).ready(function(){
+				// B1 Gan event cho nut submit
+				// v tui lam don gian
+				// file cu dau roi, tui muon cai ajax
 				$("#update_submit").on('click', function(){
-					var maso = $("#maso").val(); 
-					var first = $("#first").val();
+					var maso = $("#maso").val(); // B2: doc tham so tu form
+					var first = $("#frist").val();
 					var last = $("#last").val();
 					var born = $("#born").val();
 					
 
 					// B3: Send ajax
 					$.ajax({
-		                url: '/update', 
-		                type: 'PUT', 
-
+		                url: '/update', // url la cai route cua ong
+		                type: 'PUT', // cai method
+		                // GET thi truyen duoc qua url a.com?bien_a=3&bien_b=4
+		                // con may cai method khac thi KO truyen duoc qua url
 		                dataType: 'json',
-		                data: { 
+		                data: { // data la may cai input cua ong, no se la tham so cho thang Flask
 		                	maso: maso, first: first, last: last, born: born
 		                }
 		            }).done(function(ketqua) {
+		            	// hien tai the nay da
+		            	// B6 Clien nhan kq tra ve
 		            	alert(ketqua['message'])
 		            });
 				})
