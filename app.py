@@ -64,7 +64,7 @@ def update():
         # pdb.set_trace()
         # B5: Server edit
         # get record co ma so = input
-        doc_ref = db.collection(u'users').document('John')
+        doc_ref = db.collection(u'users').document('Dendi')
         #pdb.set_trace()
 
         if doc_ref is not None:
