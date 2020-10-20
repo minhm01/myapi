@@ -26,9 +26,9 @@ def create():
    
         doc_ref.set({
             u'maso': u'user003',
-            u'first': u'Ada',
-            u'last': u'Wong',
-            u'born': 1990
+            u'first': u'Danil',
+            u'last': u'Ishutin',
+            u'born': 1994
         })
         return jsonify({"success": True}), 200
     except Exception as e:
