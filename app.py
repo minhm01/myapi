@@ -15,7 +15,6 @@ todo_ref = db.collection('users')
 def index():
     return render_template('index.html')
 
-# kt db di
 @app.route('/add', methods=['GET'])
 def create():
     try:
@@ -40,10 +39,8 @@ def read():
     try:
         # Check if ID was passed to URL query
         todo_id = request.args.get('maso')
-        # dong nay chap nhan tham so ten 'maso'
         if todo_id:
-            # nay no lay tren truong documents
-            todo = todo_ref.document(todo_id).get()
+              todo = todo_ref.document(todo_id).get()
             return jsonify(todo.to_dict()), 200
         else:
             all_todos = [doc.to_dict() for doc in todo_ref.stream()]
@@ -56,19 +53,15 @@ def read():
 @app.route('/update', methods=['PUT'])
 def update():
     try:
-        # B4: Server xu ly tham so
         maso = request.form.get('maso')
         first = request.form.get('first')
         last = request.form.get('last')
         born = request.form.get('born')
         # pdb.set_trace()
-        # B5: Server edit
-        # get record co ma so = input
         doc_ref = db.collection(u'nguyen').document('John')
         #pdb.set_trace()
 
         if doc_ref is not None:
-               # tim thay du lieu
             doc_ref.set({
                 u'first': first,
                 u'last': last,
@@ -76,19 +69,16 @@ def update():
             })
             data = {"success": True, "message": u"Update thanh cong"}
         else:
-            # ko tim thay
             data = {"success": False, "message": u"Update that bai, khong tim thay record"}
-        # server backend se tra ve du lieu
-        
+       
         return jsonify(data), 200
     except Exception as e:
         return f"An Error Occured: {e}"
 
-
 @app.route('/delete', methods=['GET', 'DELETE'])
 def delete():
     try:
-        return jsonify({"success": True}), 200
+         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
 
